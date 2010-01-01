@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://migus.org/webservices/content-service"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		xmlns:tns="http://migus.org/webservices/content-service"
+		xmlns:content="http://migus.org/schemas/content"
+		elementFormDefault="qualified">
+	<xsd:import namespace="http://migus.org/schemas/content"
+		schemaLocation="content.xsd" />
+	<xsd:element name="add">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="content:newContent" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="addResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="content:id" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="getByAuthor">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="content:author" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="getByAuthorResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="content:contents" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="getById">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="content:id" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="getByIdResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="content:content" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="update">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="content:id" />
+				<xsd:element ref="content:title" />
+				<xsd:element ref="content:text" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="updateResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="content:content" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="updateText">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="content:id" />
+				<xsd:element ref="content:text" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="updateTitle">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="content:id" />
+				<xsd:element ref="content:title" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

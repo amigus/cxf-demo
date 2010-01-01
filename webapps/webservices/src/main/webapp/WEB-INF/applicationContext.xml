@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:cxf="http://cxf.apache.org/core" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation=" 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd 
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-http.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	<import resource="classpath:org/migus/web/content/applicationContext.xml" />
+	<bean id="org.apache.cxf.management.InstrumentationManager"
+			class="org.apache.cxf.management.jmx.InstrumentationManagerImpl">
+		<property name="bus" ref="cxf" />
+		<property name="daemon" value="false" />
+		<property name="enabled" value="true" />
+		<property name="threaded" value="false" />
+		<property name="usePlatformMBeanServer" value="true"/>
+	</bean>
+	<jaxws:endpoint id="contentServiceEndpoint" implementor="#contentService"
+		address="/content-service">
+		<jaxws:schemaLocations>
+			<jaxws:schemaLocation>classpath:/schemas/content.xsd</jaxws:schemaLocation>
+			<jaxws:schemaLocation>classpath:/schemas/content-service.xsd</jaxws:schemaLocation>
+			<jaxws:schemaLocation>classpath:/schemas/content-fault.xsd</jaxws:schemaLocation>
+		</jaxws:schemaLocations>
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+		</jaxws:outInterceptors>
+		<jaxws:properties>
+			<entry key="schema-validation-enabled" value="true" />
+		</jaxws:properties>
+	</jaxws:endpoint>
+	<jaxws:endpoint id="unwrappedContentServiceEndpoint"
+		implementor="#unwrappedContentService" address="/unwrapped-content-service"
+		wsdlLocation="classpath:/wsdl/content-service.wsdl" xmlns:tns="http://migus.org/webservices/content-service"
+		serviceName="tns:content-service" endpointName="tns:content-serviceSOAP">
+		<jaxws:schemaLocations>
+			<jaxws:schemaLocation>classpath:/schemas/content.xsd</jaxws:schemaLocation>
+			<jaxws:schemaLocation>classpath:/schemas/content-service.xsd</jaxws:schemaLocation>
+			<jaxws:schemaLocation>classpath:/schemas/content-fault.xsd</jaxws:schemaLocation>
+		</jaxws:schemaLocations>
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+		</jaxws:outInterceptors>
+	</jaxws:endpoint>
+</beans>

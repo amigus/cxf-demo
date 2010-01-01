@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="content-service"
+	xmlns:content="http://migus.org/schemas/content" 
+	xmlns:fault="http://migus.org/webservices/content-service/fault"
+	xmlns:tns="http://migus.org/webservices/content-service"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 	 
+	targetNamespace="http://migus.org/webservices/content-service">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://migus.org/webservices/content-service" elementFormDefault="qualified">
+			<xsd:import schemaLocation="../schemas/content-fault.xsd" namespace="http://migus.org/webservices/content-service/fault" />
+			<xsd:include schemaLocation="../schemas/content-service.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="addRequest">
+		<wsdl:part element="tns:add" name="body" />
+	</wsdl:message>
+	<wsdl:message name="addResponse">
+		<wsdl:part element="tns:addResponse" name="body" />
+	</wsdl:message>
+	<wsdl:message name="getByAuthorRequest">
+		<wsdl:part element="tns:getByAuthor" name="body" />
+	</wsdl:message>
+	<wsdl:message name="getByAuthorResponse">
+		<wsdl:part element="tns:getByAuthorResponse" name="body" />
+	</wsdl:message>
+	<wsdl:message name="getByIdRequest">
+		<wsdl:part element="tns:getById" name="body" />
+	</wsdl:message>
+	<wsdl:message name="getByIdResponse">
+		<wsdl:part element="tns:getByIdResponse" name="body" />
+	</wsdl:message>
+	<wsdl:message name="invalidFault">
+		<wsdl:part element="fault:invalid" name="body" />
+	</wsdl:message>
+	<wsdl:message name="notFoundFault">
+		<wsdl:part element="fault:notFound" name="body" />
+	</wsdl:message>
+	<wsdl:portType name="content-service">
+		<wsdl:operation name="add">
+			<wsdl:input message="tns:addRequest" />
+			<wsdl:output message="tns:addResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getByAuthor">
+			<wsdl:input message="tns:getByAuthorRequest" />
+			<wsdl:output message="tns:getByAuthorResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getById">
+			<wsdl:input message="tns:getByIdRequest" />
+			<wsdl:output message="tns:getByIdResponse" />
+			<wsdl:fault name="invalidFault" message="tns:invalidFault" />
+			<wsdl:fault name="notFoundFault" message="tns:notFoundFault" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="content-serviceSOAP" type="tns:content-service">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="add">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getByAuthor">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getById">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="invalidFault">
+				<soap:fault name="invalidFault" use="literal" />
+			</wsdl:fault>
+			<wsdl:fault name="notFoundFault">
+				<soap:fault name="notFoundFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="content-service">
+		<wsdl:port binding="tns:content-serviceSOAP" name="content-serviceSOAP">
+			<soap:address location="http://migus.org/webservices/content-service" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

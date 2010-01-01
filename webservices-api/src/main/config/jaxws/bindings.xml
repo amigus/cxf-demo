@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxws"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+		wsdlLocation="../../resources/wsdl/content-service.wsdl">
+	<bindings node="wsdl:definitions">
+		<package name="org.migus.web.content.soap.fromwsdl"/>
+	</bindings>
+</bindings>

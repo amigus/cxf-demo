@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://migus.org/webservices/content-service/fault"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		xmlns:tns="http://migus.org/webservices/content-service/fault"
+		xmlns:content="http://migus.org/schemas/content"
+		elementFormDefault="qualified">
+	<xsd:import namespace="http://migus.org/schemas/content"
+		schemaLocation="content.xsd" />
+	<xsd:complexType name="baseFaultType">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="code" type="xsd:string" />
+			<xsd:element minOccurs="0" name="message" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="idFaultType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:baseFaultType">
+				<xsd:sequence>
+					<xsd:element ref="content:id" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="contentFaultType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:baseFaultType">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" ref="content:id"/>
+					<xsd:element minOccurs="0" ref="content:author"/>
+					<xsd:element minOccurs="0" ref="content:title"/>
+					<xsd:element minOccurs="0" ref="content:text"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="notFound" type="tns:idFaultType"/>
+	<xsd:element name="invalid" type="tns:contentFaultType"/>
+</xsd:schema>

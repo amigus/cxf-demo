@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<resultMap id="content" class="org.migus.web.data.ContentDao$ContentData">
+		<result property="id" column="id" />
+		<result property="author" column="author" />
+		<result property="title" column="title" />
+		<result property="text" column="text" />
+		<result property="created" column="created" />
+	</resultMap>
+	<select id="getContentByAuthor" resultMap="content">
+		select id, author, title, text, created 
+			from content where author = #value#
+	</select>
+	<select id="getContentById" resultMap="content">
+		select id, author, title, text, created 
+			from content where id = #value#
+	</select>
+	<insert id="insertContent">
+		insert into content (id, author, title, text, created) 
+			values (#id#, #author#, #title#, #text#, #created#)
+	</insert>
+	<update id="updateContent">
+		update content set title = #title#, text = #text#
+			where id = #id#
+	</update>
+</sqlMap>

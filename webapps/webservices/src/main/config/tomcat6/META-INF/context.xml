@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource name="jdbc/TestDB" auth="Container" type="javax.sql.DataSource"
+		description="DataSource connected to TestDB"
+		driverClassName="${jdbc.driver}"
+		username="${jdbc.username}" password="${jdbc.password}" url="${jdbc.url}" />
+</Context>
