@@ -10,11 +10,11 @@ import org.migus.web.content.ContentTestBase;
 import org.migus.web.content.soap.ContentService;
 import org.migus.web.content.types.Content;
 import org.migus.web.content.types.NewContent;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
-public abstract class ContentSOAPTestBase extends ContentTestBase {
-	
-	protected abstract ContentService getContentService();
+public abstract class ContentServiceTest extends ContentTestBase {
+	private @Autowired ContentService contentService;
 
 	@Test
 	public void testAdd() {
@@ -24,14 +24,14 @@ public abstract class ContentSOAPTestBase extends ContentTestBase {
 		newContent.setTitle(TITLE);
 		newContent.setText(CONTENT);
 
-		String id=getContentService().add(newContent);
+		String id=contentService.add(newContent);
 
 		assertNotNull(id);
 	}
 	
 	@Test
 	public void testGetById() throws NotFoundException, InvalidException {
-		Content content = getContentService().getById(getIdOfTestContent().toString());
+		Content content = contentService.getById(getIdOfTestContent().toString());
 
 		assertEquals(content.getTitle(), TITLE);
 	}
@@ -39,7 +39,7 @@ public abstract class ContentSOAPTestBase extends ContentTestBase {
 	@Test
 	public void testGetByAuthor() {
 		List<Content> contents=
-			getContentService().getByAuthor(AUTHOR).getContents();
+			contentService.getByAuthor(AUTHOR).getContents();
 
 		assertNotNull(contents);
 		assertEquals(contents.get(0).getTitle(), TITLE);
@@ -48,6 +48,6 @@ public abstract class ContentSOAPTestBase extends ContentTestBase {
 
 	@Test
 	public void testUpdate() throws NotFoundException, InvalidException {
-		getContentService().update(getIdOfTestContent().toString(), TITLE, CONTENT);
+		contentService.update(getIdOfTestContent().toString(), TITLE, CONTENT);
 	}
 }

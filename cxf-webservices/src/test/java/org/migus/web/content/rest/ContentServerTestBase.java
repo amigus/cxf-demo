@@ -9,14 +9,16 @@ import org.junit.Test;
 import org.migus.web.content.ContentTestBase;
 import org.migus.web.content.rest.ContentServer;
 import org.migus.web.content.types.Content;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
-public abstract class ContentRESTTestBase extends ContentTestBase {
-
-	protected abstract ContentServer getContentServer();
+@ContextConfiguration
+public abstract class ContentServerTestBase extends ContentTestBase {
+	private @Autowired ContentServer contentServer;
 
 	@Test
 	public void testGet() {
-		Content content=getContentServer().get(getIdOfTestContent().toString());
+		Content content=contentServer.get(getIdOfTestContent().toString());
 		
 		assertEquals(content.getTitle(), TITLE);
 	}
@@ -24,7 +26,7 @@ public abstract class ContentRESTTestBase extends ContentTestBase {
 	@Test
 	public void testByAuthor() {
 		List<Content> contents=
-			getContentServer().getByAuthor(AUTHOR).getContents();
+			contentServer.getByAuthor(AUTHOR).getContents();
 
 		assertNotNull(contents);
 		assertEquals(contents.get(0).getTitle(), TITLE);
@@ -33,11 +35,11 @@ public abstract class ContentRESTTestBase extends ContentTestBase {
 
 	@Test
 	public void testUpdateText() {
-		getContentServer().updateText(getIdOfTestContent().toString(), CONTENT);
+		contentServer.updateText(getIdOfTestContent().toString(), CONTENT);
 	}
 
 	@Test
 	public void testUpdateTitle() {
-		getContentServer().updateTitle(getIdOfTestContent().toString(), TITLE);
+		contentServer.updateTitle(getIdOfTestContent().toString(), TITLE);
 	}
 }

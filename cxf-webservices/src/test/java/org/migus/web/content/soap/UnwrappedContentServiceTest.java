@@ -15,19 +15,12 @@ import org.migus.web.content.types.NewContent;
 import org.migus.web.content.soap.fromwsdl.ContentService;
 import org.migus.web.content.soap.fromwsdl.InvalidFault;
 import org.migus.web.content.soap.fromwsdl.NotFoundFault;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class UnwrappedContentServiceTest extends ContentTestBase {
-	static final String [] contexts = { "/dataSourceContext.xml", 
-			"/applicationContext.xml" };
+	private @Autowired ContentService contentService;
 	
-	ContentService contentService = (ContentService) context.getBean(
-			"unwrappedContentServiceClient");
-	
-	protected String [] getContextFiles() {
-		return contexts;
-	}
-
 	@Test
 	public void testAdd() {
 		Add add=new Add();
