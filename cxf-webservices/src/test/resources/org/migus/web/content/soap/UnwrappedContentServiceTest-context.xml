@@ -15,7 +15,7 @@ http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
 	<import resource="classpath:META-INF/cxf/cxf-extension-http-jetty.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 	<jaxws:endpoint id="contentService" 
-		implementor="#unwrappedContentService"
+		implementor="#unwrappedContentServiceBean"
 		endpointName="service:content-serviceSOAP" 
 		serviceName="service:content-service"
 		wsdlLocation="classpath:/wsdl/content-service.wsdl" 

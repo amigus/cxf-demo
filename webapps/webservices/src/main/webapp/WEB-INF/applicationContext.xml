@@ -19,7 +19,7 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 		<property name="threaded" value="false" />
 		<property name="usePlatformMBeanServer" value="true"/>
 	</bean>
-	<jaxws:endpoint id="contentServiceEndpoint" implementor="#contentService"
+	<jaxws:endpoint id="contentService" implementor="#contentServiceBean"
 		address="/content-service">
 		<jaxws:schemaLocations>
 			<jaxws:schemaLocation>classpath:/schemas/content.xsd</jaxws:schemaLocation>
@@ -36,8 +36,8 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 			<entry key="schema-validation-enabled" value="true" />
 		</jaxws:properties>
 	</jaxws:endpoint>
-	<jaxws:endpoint id="unwrappedContentServiceEndpoint"
-		implementor="#unwrappedContentService" address="/unwrapped-content-service"
+	<jaxws:endpoint id="unwrappedContentService"
+		implementor="#unwrappedContentServiceBean" address="/unwrapped-content-service"
 		wsdlLocation="classpath:/wsdl/content-service.wsdl" xmlns:tns="http://migus.org/webservices/content-service"
 		serviceName="tns:content-service" endpointName="tns:content-serviceSOAP">
 		<jaxws:schemaLocations>

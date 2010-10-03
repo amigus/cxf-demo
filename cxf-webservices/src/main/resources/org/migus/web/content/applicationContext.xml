@@ -9,12 +9,12 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 			<ref bean="contentDao" />
 		</constructor-arg>
 	</bean>
-	<bean id="contentService" class="org.migus.web.content.soap.ContentServiceImpl">
+	<bean id="contentServiceBean" class="org.migus.web.content.soap.ContentServiceImpl">
 		<constructor-arg>
 			<ref bean="contentDao" />
 		</constructor-arg>
 	</bean>
-	<bean id="unwrappedContentService" class="org.migus.web.content.soap.UnwrappedContentServiceImpl">
+	<bean id="unwrappedContentServiceBean" class="org.migus.web.content.soap.UnwrappedContentServiceImpl">
 		<constructor-arg>
 			<ref bean="contentDao" />
 		</constructor-arg>
