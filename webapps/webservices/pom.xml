@@ -76,14 +76,12 @@
 				<plugins>
 					<plugin>
 						<groupId>org.mortbay.jetty</groupId>
-						<artifactId>maven-jetty-plugin</artifactId>
+						<artifactId>jetty-maven-plugin</artifactId>
+						<version>7.2.2.v20101205</version>
 						<configuration>
-							<!-- 
-								http://docs.codehaus.org/display/JETTY/Maven+Jetty+Plugin 
-								says: ${project.build.directory}/${project.build.finalName}
-								is the default however it must be specified. 
-							-->
-							<webApp>${project.build.directory}/${project.build.finalName}</webApp>
+							<webAppConfig>
+								<contextPath>/${project.artifactId}</contextPath>
+							</webAppConfig>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -92,7 +90,7 @@
 						<configuration>
 							<webResources>
 								<resource>
-									<directory>src/main/config/jetty6</directory>
+									<directory>src/main/config/jetty</directory>
 									<filtering>true</filtering>
 								</resource>
 							</webResources>
