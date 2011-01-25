@@ -21,17 +21,14 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 	</bean>
 	<jaxws:endpoint id="contentService" implementor="#contentServiceBean"
 		address="/content-service">
+		<jaxws:features>
+			<cxf:logging />
+		</jaxws:features>
 		<jaxws:schemaLocations>
 			<jaxws:schemaLocation>classpath:/schemas/content.xsd</jaxws:schemaLocation>
 			<jaxws:schemaLocation>classpath:/schemas/content-service.xsd</jaxws:schemaLocation>
 			<jaxws:schemaLocation>classpath:/schemas/content-fault.xsd</jaxws:schemaLocation>
 		</jaxws:schemaLocations>
-		<jaxws:inInterceptors>
-			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor" />
-		</jaxws:inInterceptors>
-		<jaxws:outInterceptors>
-			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
-		</jaxws:outInterceptors>
 		<jaxws:properties>
 			<entry key="schema-validation-enabled" value="true" />
 		</jaxws:properties>
@@ -40,16 +37,13 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 		implementor="#unwrappedContentServiceBean" address="/unwrapped-content-service"
 		wsdlLocation="classpath:/wsdl/content-service.wsdl" xmlns:tns="http://migus.org/webservices/content-service"
 		serviceName="tns:content-service" endpointName="tns:content-serviceSOAP">
+		<jaxws:features>
+			<cxf:logging />
+		</jaxws:features>
 		<jaxws:schemaLocations>
 			<jaxws:schemaLocation>classpath:/schemas/content.xsd</jaxws:schemaLocation>
 			<jaxws:schemaLocation>classpath:/schemas/content-service.xsd</jaxws:schemaLocation>
 			<jaxws:schemaLocation>classpath:/schemas/content-fault.xsd</jaxws:schemaLocation>
 		</jaxws:schemaLocations>
-		<jaxws:inInterceptors>
-			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor" />
-		</jaxws:inInterceptors>
-		<jaxws:outInterceptors>
-			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
-		</jaxws:outInterceptors>
 	</jaxws:endpoint>
 </beans>
