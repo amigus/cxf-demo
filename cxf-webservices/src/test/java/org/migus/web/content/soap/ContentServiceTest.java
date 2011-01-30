@@ -11,8 +11,10 @@ import org.migus.web.content.soap.ContentService;
 import org.migus.web.content.types.Content;
 import org.migus.web.content.types.NewContent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 
+@ContextConfiguration
 public abstract class ContentServiceTest extends ContentTestBase {
 	private @Autowired ContentService contentService;
 

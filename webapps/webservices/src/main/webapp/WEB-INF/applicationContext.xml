@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:cxf="http://cxf.apache.org/core" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation=" 
-http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd 
-http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-http.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
-	<import resource="classpath:org/migus/web/content/applicationContext.xml" />
+	<context:component-scan base-package="org.migus.web.content.soap"/>
 	<bean id="org.apache.cxf.management.InstrumentationManager"
 			class="org.apache.cxf.management.jmx.InstrumentationManagerImpl">
 		<property name="bus" ref="cxf" />
@@ -19,7 +21,7 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 		<property name="threaded" value="false" />
 		<property name="usePlatformMBeanServer" value="true"/>
 	</bean>
-	<jaxws:endpoint id="contentService" implementor="#contentServiceBean"
+	<jaxws:endpoint implementor="#contentServiceImpl"
 		address="/content-service">
 		<jaxws:features>
 			<cxf:logging />
@@ -33,9 +35,10 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 			<entry key="schema-validation-enabled" value="true" />
 		</jaxws:properties>
 	</jaxws:endpoint>
-	<jaxws:endpoint id="unwrappedContentService"
-		implementor="#unwrappedContentServiceBean" address="/unwrapped-content-service"
-		wsdlLocation="classpath:/wsdl/content-service.wsdl" xmlns:tns="http://migus.org/webservices/content-service"
+	<jaxws:endpoint implementor="#unwrappedContentServiceImpl" 
+		address="/unwrapped-content-service"
+		wsdlLocation="classpath:/wsdl/content-service.wsdl" 
+		xmlns:tns="http://migus.org/webservices/content-service"
 		serviceName="tns:content-service" endpointName="tns:content-serviceSOAP">
 		<jaxws:features>
 			<cxf:logging />

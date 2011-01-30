@@ -24,8 +24,11 @@ import org.migus.web.data.ContentDao;
 import org.migus.web.data.ContentDao.ContentData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @WebService(endpointInterface="org.migus.web.content.soap.fromwsdl.ContentService")
+@Service
 public class UnwrappedContentServiceImpl implements ContentService {
 	ContentDao contentDao;
 	Logger logger=LoggerFactory.getLogger(getClass());
@@ -44,6 +47,7 @@ public class UnwrappedContentServiceImpl implements ContentService {
 		return content;
 	}
 
+	@Autowired
 	public UnwrappedContentServiceImpl(ContentDao contentDao) {
 		this.contentDao=contentDao;
 	}

@@ -16,8 +16,10 @@ import org.migus.web.content.soap.fromwsdl.ContentService;
 import org.migus.web.content.soap.fromwsdl.InvalidFault;
 import org.migus.web.content.soap.fromwsdl.NotFoundFault;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 
+@ContextConfiguration
 public class UnwrappedContentServiceTest extends ContentTestBase {
 	private @Autowired ContentService contentService;
 	

@@ -16,7 +16,10 @@ import org.migus.web.content.types.Contents;
 import org.migus.web.content.types.NewContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ContentServerImpl implements ContentServer {
 	ContentDao contentDao;
 	Logger logger;
@@ -41,6 +44,7 @@ public class ContentServerImpl implements ContentServer {
 		this.logger=logger;
 	}
 
+	@Autowired
 	public ContentServerImpl(ContentDao contentDao) {
 		this(contentDao, LoggerFactory.getLogger(ContentServerImpl.class));
 	}

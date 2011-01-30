@@ -11,11 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@ContextConfiguration({
-	"classpath:/org/migus/web/content/applicationContext.xml",
-	"classpath:/org/migus/web/content/ContentTestBase-context.xml",
-	"classpath:/org/migus/web/data/ibatis/applicationContext.xml"
-})
+@ContextConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 public abstract class ContentTestBase {
 	protected static final String AUTHOR = "Adam";

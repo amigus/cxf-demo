@@ -15,10 +15,13 @@ import org.migus.web.content.types.Contents;
 import org.migus.web.content.types.NewContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @WebService(endpointInterface="org.migus.web.content.soap.ContentService",
 		portName="content-port", serviceName="content-service",
 		targetNamespace = "http://migus.org/webservices/content-service")
+@Service
 public class ContentServiceImpl implements ContentService {
 	ContentDao contentDao;
 	Logger logger;
@@ -67,6 +70,7 @@ public class ContentServiceImpl implements ContentService {
 		this.logger=logger;
 	}
 
+	@Autowired
 	public ContentServiceImpl(ContentDao contentDao) {
 		this(contentDao, LoggerFactory.getLogger(ContentServiceImpl.class));
 	}
