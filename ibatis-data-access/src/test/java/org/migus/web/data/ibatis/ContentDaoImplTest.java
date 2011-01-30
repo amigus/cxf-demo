@@ -9,20 +9,23 @@ import java.util.List;
 import java.util.UUID;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.migus.web.data.ContentDao;
 import org.migus.web.data.ContentException;
 import org.migus.web.data.ContentExistsException;
 import org.migus.web.data.ContentNotFoundException;
 import org.migus.web.data.ContentDao.ContentData;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+
+@ContextConfiguration
+@RunWith(SpringJUnit4ClassRunner.class)
 public class ContentDaoImplTest {
 	static String AUTHOR="Adam", TITLE="Title", CONTENT="Some content";
 	
-	ApplicationContext context=new ClassPathXmlApplicationContext(new String [] {
-			"applicationContext.xml", "org/migus/web/data/ibatis/applicationContext.xml" });
-	ContentDao contentDao=(ContentDao) context.getBean("contentDao");
+	private @Autowired ContentDao contentDao;
 	
 	@Test
 	public void testInsertContent() throws ContentExistsException {
