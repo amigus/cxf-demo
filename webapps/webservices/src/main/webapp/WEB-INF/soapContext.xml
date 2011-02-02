@@ -8,18 +8,12 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-	<import resource="classpath:META-INF/cxf/cxf.xml" />
-	<import resource="classpath:META-INF/cxf/cxf-extension-http.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
-	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 	<context:component-scan base-package="org.migus.web.content.soap"/>
 	<bean id="org.apache.cxf.management.InstrumentationManager"
 			class="org.apache.cxf.management.jmx.InstrumentationManagerImpl">
 		<property name="bus" ref="cxf" />
-		<property name="daemon" value="false" />
 		<property name="enabled" value="true" />
-		<property name="threaded" value="false" />
-		<property name="usePlatformMBeanServer" value="true"/>
 	</bean>
 	<jaxws:endpoint implementor="#contentServiceImpl"
 		address="/content-service">

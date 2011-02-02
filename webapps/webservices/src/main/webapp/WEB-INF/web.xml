@@ -10,7 +10,14 @@
 	</context-param>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/applicationContext.xml /WEB-INF/applicationContext-jaxrs.xml /WEB-INF/dataSourceContext.xml</param-value>
+		<param-value>
+			classpath:META-INF/cxf/cxf.xml
+			classpath:META-INF/cxf/cxf-extension-http.xml
+			classpath:META-INF/cxf/cxf-servlet.xml
+			/WEB-INF/soapContext.xml
+			/WEB-INF/restContext.xml
+			/WEB-INF/dataSourceContext.xml
+		</param-value>
 	</context-param>
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
