@@ -15,7 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 
 @ContextConfiguration
-public abstract class ContentServiceTest extends ContentTestBase {
+public class ContentServiceTest extends ContentTestBase {
 	private @Autowired ContentService contentService;
 
 	@Test
