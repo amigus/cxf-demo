@@ -12,7 +12,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-http.xml" />
-	<import resource="classpath:META-INF/cxf/cxf-extension-jaxrs-binding.xml" />
 	<context:component-scan base-package="org.migus.web.content.rest"/>
 	<bean id="schemaHandler" class="org.apache.cxf.jaxrs.utils.schemas.SchemaHandler">
 		<property name="schemas">
