@@ -23,10 +23,10 @@ import org.springframework.stereotype.Service;
 		targetNamespace = "http://migus.org/webservices/content-service")
 @Service
 public class ContentServiceImpl implements ContentService {
-	ContentDao contentDao;
-	Logger logger;
+	private ContentDao contentDao;
+	private Logger logger;
 
-	Content convertContentData(ContentData contentData) {
+	private Content convertContentData(ContentData contentData) {
 		Content content=null;
 		String message="converting contentData to content";
 		
@@ -40,7 +40,8 @@ public class ContentServiceImpl implements ContentService {
 		return content;
 	}
 
-	Content doGetById(String id) throws NotFoundException, InvalidException {
+	private Content doGetById(String id) throws NotFoundException, 
+			InvalidException {
 		String message="getting content for id "+id;
 
 		logger.debug(message);

@@ -9,7 +9,7 @@ public class InvalidException extends Exception {
 
 	static final long serialVersionUID = 1L;
 
-	Invalid invalid;
+	private Invalid invalid;
 
 	public InvalidException(Invalid invalid) {
 		this.invalid=invalid;

@@ -6,9 +6,9 @@ import java.util.UUID;
 
 public interface ContentDao {
 	class ContentData {
-		String author, title, text;
-		Date created;
-		UUID id;
+		private String author, title, text;
+		private Date created;
+		private UUID id;
 		
 		ContentData(UUID id) {
 			super();

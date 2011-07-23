@@ -11,9 +11,9 @@ import org.migus.web.content.types.Content;
 import org.migus.web.data.ContentDao.ContentData;
 
 public class ContentBuilder {
-	GregorianCalendar created;
-	String author, title, text;
-	UUID id;
+	private GregorianCalendar created;
+	private String author, title, text;
+	private UUID id;
 	
 	public static ContentBuilder fromContentData(ContentData contentData) {
 		return new ContentBuilder(contentData.getId())

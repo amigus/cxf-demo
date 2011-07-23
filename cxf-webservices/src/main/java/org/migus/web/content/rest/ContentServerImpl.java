@@ -21,8 +21,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ContentServerImpl implements ContentServer {
-	ContentDao contentDao;
-	Logger logger;
+	private ContentDao contentDao;
+	private Logger logger;
 	
 	Content convertContentData(ContentData contentData) {
 		Content content=null;

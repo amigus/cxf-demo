@@ -6,7 +6,7 @@ public class ContentException extends Exception {
 
 	static final long serialVersionUID = 1L;
 
-	UUID id;
+	private UUID id;
 
 	protected ContentException() {
 		super();

@@ -9,7 +9,7 @@ public class NotFoundException extends Exception {
 
 	static final long serialVersionUID = 1L;
 
-	NotFound notFound;
+	private NotFound notFound;
 
 	public NotFoundException(String id) {
 		this.notFound=new NotFound();

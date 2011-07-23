@@ -30,10 +30,10 @@ import org.springframework.stereotype.Service;
 @WebService(endpointInterface="org.migus.web.content.soap.fromwsdl.ContentService")
 @Service
 public class UnwrappedContentServiceImpl implements ContentService {
-	ContentDao contentDao;
-	Logger logger=LoggerFactory.getLogger(getClass());
+	private ContentDao contentDao;
+	private Logger logger=LoggerFactory.getLogger(getClass());
 
-	Content convertContentData(ContentData contentData) {
+	private Content convertContentData(ContentData contentData) {
 		Content content=null;
 		String message="converting contentData to content";
 		

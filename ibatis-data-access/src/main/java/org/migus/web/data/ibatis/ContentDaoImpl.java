@@ -15,7 +15,7 @@ import org.apache.commons.lang.NullArgumentException;
 
 public class ContentDaoImpl extends SqlMapClientDaoSupport implements
 		ContentDao {
-	Logger logger = LoggerFactory.getLogger(getClass());
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@SuppressWarnings("unchecked")
 	public List<ContentData> getContentsByAuthor(String author) {
