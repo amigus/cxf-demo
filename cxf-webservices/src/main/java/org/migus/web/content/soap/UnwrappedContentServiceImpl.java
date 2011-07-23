@@ -47,9 +47,15 @@ public class UnwrappedContentServiceImpl implements ContentService {
 		return content;
 	}
 
+	public UnwrappedContentServiceImpl(ContentDao contentDao, Logger logger) {
+		this.contentDao=contentDao;
+		this.logger=logger;
+	}
+
 	@Autowired
 	public UnwrappedContentServiceImpl(ContentDao contentDao) {
-		this.contentDao=contentDao;
+		this(contentDao, LoggerFactory.getLogger(
+				UnwrappedContentServiceImpl.class));
 	}
 	
 	public AddResponse add(Add body) {
