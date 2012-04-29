@@ -8,7 +8,6 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 	<context:component-scan base-package="org.migus.web.content.soap"/>
 	<bean id="org.apache.cxf.management.InstrumentationManager"
 			class="org.apache.cxf.management.jmx.InstrumentationManagerImpl">

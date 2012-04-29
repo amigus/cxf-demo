@@ -10,8 +10,6 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-	<import resource="classpath:META-INF/cxf/cxf.xml" />
-	<import resource="classpath:META-INF/cxf/cxf-extension-http.xml" />
 	<context:component-scan base-package="org.migus.web.content.rest"/>
 	<bean id="schemaHandler" class="org.apache.cxf.jaxrs.utils.schemas.SchemaHandler">
 		<property name="schemas">
@@ -23,7 +21,7 @@
 	<bean id="jaxbProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider">
 		<property name="schemaHandler" ref="schemaHandler"/>
 	</bean>
-	<bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.JSONProvider">
+	<bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.json.JSONProvider">
 		<property name="namespaceMap">
 			<util:map map-class="java.util.Hashtable">
 				<entry key="http://migus.org/schemas/content" value=""/>

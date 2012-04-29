@@ -12,7 +12,6 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath:META-INF/cxf/cxf.xml
-			classpath:META-INF/cxf/cxf-extension-http.xml
 			classpath:META-INF/cxf/cxf-servlet.xml
 			/WEB-INF/soapContext.xml
 			/WEB-INF/restContext.xml
