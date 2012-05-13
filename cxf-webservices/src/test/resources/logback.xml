@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date %level [%thread] %logger{10} [%file : %line] %msg%n</pattern>
+		</encoder>
+	</appender>
+	<logger name="org.apache.cxf">
+		<level value="info" />
+	</logger>
+	<logger name="org.migus.web">
+		<level value="debug" />
+	</logger>
+	<logger name="org.springframework">
+		<level value="info" />
+	</logger>
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="console" />
+	</root>
+</configuration>

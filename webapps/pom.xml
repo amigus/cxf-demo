@@ -6,6 +6,9 @@
 		<artifactId>platform</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
+	<properties>
+		<log4j.version>1.2.16</log4j.version>
+	</properties>
 	<groupId>org.migus.web</groupId>
 	<artifactId>webapps</artifactId>
 	<packaging>pom</packaging>
@@ -15,10 +18,22 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
 				<version>2.5</version>
 				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
