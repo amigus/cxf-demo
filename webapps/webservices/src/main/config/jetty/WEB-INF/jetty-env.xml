@@ -4,10 +4,10 @@
 	<New id="TEST" class="org.eclipse.jetty.plus.jndi.Resource">
 		<Arg>jdbc/TestDB</Arg>
 		<Arg>
-			<New class="org.apache.commons.dbcp.BasicDataSource">
-				<Set name="driverClassName">${jdbc.driver}</Set>
-				<Set name="url">${jdbc.url}</Set>
-				<Set name="username">${jdbc.username}</Set>
+			<New class="com.mchange.v2.c3p0.ComboPooledDataSource">
+				<Set name="driverClass">${jdbc.driver}</Set>
+				<Set name="jdbcUrl">${jdbc.url}</Set>
+				<Set name="user">${jdbc.username}</Set>
 				<Set name="password">${jdbc.password}</Set>
 			</New>
 		</Arg>
