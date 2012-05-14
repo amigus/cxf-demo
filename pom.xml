@@ -31,6 +31,12 @@
 				<scope>test</scope>	
 			</dependency>
 			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>2.2.8</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
 				<version>${slf4j.version}</version>
@@ -248,91 +254,6 @@
 					</dependency>
 				</dependencies>
 			</dependencyManagement>
-		</profile>
-		<profile>
-			<id>derby</id>
-			<build>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>sql-maven-plugin</artifactId>
-							<version>1.4</version>
-							<configuration>
-								<username>TEST</username>
-								<password>TEST</password>
-								<driver>org.apache.derby.jdbc.EmbeddedDriver</driver>
-							</configuration>
-							<dependencies>
-								<dependency>
-									<groupId>org.apache.derby</groupId>
-									<artifactId>derby</artifactId>
-									<version>${derby.version}</version>
-								</dependency>
-							</dependencies>
-							<executions>
-								<execution>
-									<id>create schema</id>
-									<phase>process-test-resources</phase>
-									<goals>
-										<goal>execute</goal>
-									</goals>
-									<configuration>
-										<url>jdbc:derby:${basedir}/target/derby/TEST;create=true</url>
-										<autocommit>true</autocommit>
-										<srcFiles>
-											<srcFile>src/test/resources/derby.sql</srcFile>
-										</srcFiles>
-										<onError>continue</onError>
-									</configuration>
-								</execution>
-								<execution>
-									<id>derby shutdown</id>
-									<phase>process-test-resources</phase>
-									<goals>
-										<goal>execute</goal>
-									</goals>
-									<configuration>
-										<url>jdbc:derby:${basedir}/target/derby/TEST;shutdown=true</url>
-										<skipOnConnectionError>true</skipOnConnectionError>
-									</configuration>
-								</execution>
-							</executions>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-			<dependencies>
-				<dependency>
-					<groupId>org.apache.derby</groupId>
-					<artifactId>derby</artifactId>
-					<version>${derby.version}</version>
-				</dependency>
-			</dependencies>
-			<properties>
-				<derby.version>10.4.2.0</derby.version>
-				<jdbc.driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc.driver>
-				<jdbc.username>TEST</jdbc.username>
-				<jdbc.password>TEST</jdbc.password>
-				<jdbc.url>jdbc:derby:target/derby/TEST</jdbc.url>
-			</properties>
-		</profile>
-		<profile>
-			<id>mysql</id>
-			<dependencies>
-				<dependency>
-					<groupId>mysql</groupId>
-					<artifactId>mysql-connector-java</artifactId>
-					<version>${mysql.version}</version>
-				</dependency>
-			</dependencies>
-			<properties>
-				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-				<jdbc.username>root</jdbc.username>
-				<jdbc.password>root</jdbc.password>
-				<jdbc.url>jdbc:mysql://localhost/TEST</jdbc.url>
-				<mysql.version>5.1.6</mysql.version>
-			</properties>
 		</profile>
 	</profiles>
 	<reporting>
