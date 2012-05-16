@@ -14,18 +14,6 @@
 	<properties>
 		<cxf.version>2.6.0</cxf.version>
 	</properties>
-	<repositories>
-		<repository>
-			<id>apache-incubating</id>
-			<url>http://people.apache.org/repo/m2-incubating-repository/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
