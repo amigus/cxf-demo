@@ -98,7 +98,7 @@
 		<module>webservices-api</module>
 	</modules>
 	<scm>
-		<connection>scm:git:file://localhost/${basedir}</connection>
+		<connection>scm:git:http://github.com/amigus/cxf-demo.git</connection>
 		<developerConnection>scm:git:file://localhost/${basedir}</developerConnection>
 	</scm>
 	<build>
