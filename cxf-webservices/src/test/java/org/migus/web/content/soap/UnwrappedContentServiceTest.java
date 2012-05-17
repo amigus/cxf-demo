@@ -2,6 +2,7 @@ package org.migus.web.content.soap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -68,5 +69,11 @@ public class UnwrappedContentServiceTest extends ContentTestBase {
 		
 		assertNotNull(content);
 		assertEquals(content.getTitle(), TITLE);
+		try {
+			request.setId("foo");
+			contentService.getById(request);
+			fail("expected to get an InvalidFault");
+		}
+		catch (InvalidFault e) {}
 	}
 }

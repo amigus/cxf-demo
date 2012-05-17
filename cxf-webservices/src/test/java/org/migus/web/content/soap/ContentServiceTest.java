@@ -2,6 +2,7 @@ package org.migus.web.content.soap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -30,12 +31,18 @@ public class ContentServiceTest extends ContentTestBase {
 
 		assertNotNull(id);
 	}
-	
+
 	@Test
 	public void testGetById() throws NotFoundException, InvalidException {
 		Content content = contentService.getById(getIdOfTestContent().toString());
 
 		assertEquals(content.getTitle(), TITLE);
+
+		try {
+			contentService.getById("foo");
+			fail("expected to get an InvalidException");
+		}
+		catch (InvalidException e) {}
 	}
 
 	@Test
