@@ -8,12 +8,6 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.ws.WebServiceException;
 
 import org.migus.web.content.ContentBuilder;
-import org.migus.web.content.soap.Add;
-import org.migus.web.content.soap.AddResponse;
-import org.migus.web.content.soap.GetByAuthor;
-import org.migus.web.content.soap.GetByAuthorResponse;
-import org.migus.web.content.soap.GetById;
-import org.migus.web.content.soap.GetByIdResponse;
 import org.migus.web.content.soap.fromwsdl.ContentService;
 import org.migus.web.content.soap.fromwsdl.InvalidFault;
 import org.migus.web.content.soap.fromwsdl.NotFoundFault;

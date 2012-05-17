@@ -10,7 +10,6 @@ import org.migus.web.data.ContentExistsException;
 import org.migus.web.data.ContentNotFoundException;
 import org.migus.web.data.ContentDao.ContentData;
 import org.migus.web.content.ContentBuilder;
-import org.migus.web.content.rest.ContentServer;
 import org.migus.web.content.types.Content;
 import org.migus.web.content.types.Contents;
 import org.migus.web.content.types.NewContent;
