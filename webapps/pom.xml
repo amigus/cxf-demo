@@ -54,13 +54,6 @@
 	<profiles>
 		<profile>
 			<id>jetty</id>
-			<pluginRepositories>
-				<pluginRepository>
-					<id>mortbay-repo</id>
-					<name>mortbay-repo</name>
-					<url>http://www.mortbay.org/maven2/snapshot</url>
-				</pluginRepository>
-			</pluginRepositories>
 			<build>
 				<pluginManagement>
 					<plugins>
