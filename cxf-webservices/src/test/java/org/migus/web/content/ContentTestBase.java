@@ -2,6 +2,7 @@ package org.migus.web.content;
 
 import java.util.UUID;
 
+import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.migus.web.data.ContentDao;
 import org.migus.web.data.ContentExistsException;
@@ -20,15 +21,20 @@ public abstract class ContentTestBase {
 
 	private Logger logger=LoggerFactory.getLogger(getClass());
 	private @Autowired ContentDao contentDao;
+	private UUID id;
 	
-	protected UUID getIdOfTestContent() {
-		UUID id=UUID.randomUUID(); 
+	@Before
+	public void setup() {
+		id=UUID.randomUUID(); 
 		try {
 			contentDao.insertContent(id, AUTHOR, TITLE, CONTENT);
 		} catch (ContentExistsException e) {
 			logger.warn("content for UUID.randomUUID() = { "+
 					id+" } already exists");
 		}
+	}
+
+	protected UUID getIdOfTestContent() {
 		return id;
 	}
 }
