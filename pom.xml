@@ -175,6 +175,34 @@
 				</dependencies>
 			</dependencyManagement>
 		</profile>
+		<profile>
+			<id>jdk17</id>
+			<activation>
+				<jdk>1.7</jdk>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<configuration>
+							<source>1.7</source>
+							<target>1.7</target>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>javax.activation</groupId>
+						<artifactId>activation</artifactId>
+						<version>1.1.1</version>
+						<scope>provided</scope>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+		</profile>
 	</profiles>
 	<reporting>
 		<plugins>
