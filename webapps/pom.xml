@@ -7,7 +7,7 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<properties>
-		<log4j.version>1.2.16</log4j.version>
+		<log4j.version>1.2.17</log4j.version>
 	</properties>
 	<groupId>org.migus.web</groupId>
 	<artifactId>webapps</artifactId>
