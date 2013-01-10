@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="Content Services" resourceRoot="${projectDir}" soapui-version="4.5.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="content-serviceSoapBinding" type="wsdl" bindingName="{http://migus.org/webservices/content-service}content-serviceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/webservices/content-service?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/webservices/content-service?wsdl"><con:part><con:url>http://localhost:8080/webservices/content-service?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="content-service" targetNamespace="http://migus.org/webservices/content-service" xmlns:ns1="http://migus.org/webservices/content-service/fault" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://migus.org/webservices/content-service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://migus.org/schemas/content" xmlns:tns="http://migus.org/schemas/content">
+      <xsd:complexType name="contentType">
+        <xsd:sequence>
+          <xsd:element name="author" type="tns:authorType"/>
+          <xsd:element name="title" type="tns:titleType"/>
+          <xsd:element name="text" type="tns:textType"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:string"/>
+        <xsd:attribute name="created" type="xsd:date"/>
+      </xsd:complexType>
+      <xsd:complexType name="newContentType">
+        <xsd:sequence>
+          <xsd:element name="author" type="tns:authorType"/>
+          <xsd:element name="title" type="tns:titleType"/>
+          <xsd:element name="text" type="tns:textType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="authorType">
+        <xsd:restriction base="xsd:string"/>
+      </xsd:simpleType>
+      <xsd:simpleType name="titleType">
+        <xsd:restriction base="xsd:string"/>
+      </xsd:simpleType>
+      <xsd:simpleType name="textType">
+        <xsd:restriction base="xsd:string"/>
+      </xsd:simpleType>
+      <xsd:element name="content" type="tns:contentType"/>
+      <xsd:element name="contents">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="tns:content"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="author" type="tns:authorType"/>
+      <xsd:element name="id" type="xsd:string"/>
+      <xsd:element name="newContent" type="tns:newContentType"/>
+      <xsd:element name="text" type="tns:textType"/>
+      <xsd:element name="title" type="tns:titleType"/>
+    </xsd:schema>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://migus.org/webservices/content-service" xmlns:content="http://migus.org/schemas/content">
+      <xsd:import namespace="http://migus.org/schemas/content"/>
+      <xsd:element name="add">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="content:newContent"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="content:id"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getByAuthor">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="content:author"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getByAuthorResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="content:contents"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="content:id"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="content:content"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="update">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="content:id"/>
+            <xsd:element ref="content:title"/>
+            <xsd:element ref="content:text"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="content:content"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateText">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="content:id"/>
+            <xsd:element ref="content:text"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateTitle">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="content:id"/>
+            <xsd:element ref="content:title"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://migus.org/webservices/content-service/fault" xmlns:content="http://migus.org/schemas/content" xmlns:tns="http://migus.org/webservices/content-service/fault">
+      <xsd:import namespace="http://migus.org/schemas/content"/>
+      <xsd:complexType name="baseFaultType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="idFaultType">
+        <xsd:complexContent>
+          <xsd:extension base="tns:baseFaultType">
+            <xsd:sequence>
+              <xsd:element ref="content:id"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="contentFaultType">
+        <xsd:complexContent>
+          <xsd:extension base="tns:baseFaultType">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" ref="content:id"/>
+              <xsd:element minOccurs="0" ref="content:author"/>
+              <xsd:element minOccurs="0" ref="content:title"/>
+              <xsd:element minOccurs="0" ref="content:text"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:element name="notFound" type="tns:idFaultType"/>
+      <xsd:element name="invalid" type="tns:contentFaultType"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="updateResponse">
+    <wsdl:part element="tns:updateResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="update">
+    <wsdl:part element="tns:update" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getByAuthor">
+    <wsdl:part element="tns:getByAuthor" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addResponse">
+    <wsdl:part element="tns:addResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getByAuthorResponse">
+    <wsdl:part element="tns:getByAuthorResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="add">
+    <wsdl:part element="tns:add" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getById">
+    <wsdl:part element="tns:getById" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NotFoundException">
+    <wsdl:part element="ns1:notFound" name="NotFoundException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidException">
+    <wsdl:part element="ns1:invalid" name="InvalidException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getByIdResponse">
+    <wsdl:part element="tns:getByIdResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="content-service">
+    <wsdl:operation name="getById">
+      <wsdl:input message="tns:getById" name="getById"></wsdl:input>
+      <wsdl:output message="tns:getByIdResponse" name="getByIdResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidException" name="InvalidException"></wsdl:fault>
+      <wsdl:fault message="tns:NotFoundException" name="NotFoundException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getByAuthor">
+      <wsdl:input message="tns:getByAuthor" name="getByAuthor"></wsdl:input>
+      <wsdl:output message="tns:getByAuthorResponse" name="getByAuthorResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="add">
+      <wsdl:input message="tns:add" name="add"></wsdl:input>
+      <wsdl:output message="tns:addResponse" name="addResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdl:input message="tns:update" name="update"></wsdl:input>
+      <wsdl:output message="tns:updateResponse" name="updateResponse"></wsdl:output>
+      <wsdl:fault message="tns:InvalidException" name="InvalidException"></wsdl:fault>
+      <wsdl:fault message="tns:NotFoundException" name="NotFoundException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="content-serviceSoapBinding" type="tns:content-service">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getById">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidException">
+        <soap:fault name="InvalidException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NotFoundException">
+        <soap:fault name="NotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getByAuthor">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getByAuthor">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getByAuthorResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="add">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="add">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="update">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidException">
+        <soap:fault name="InvalidException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NotFoundException">
+        <soap:fault name="NotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="content-service">
+    <wsdl:port binding="tns:content-serviceSoapBinding" name="content-port">
+      <soap:address location="http://localhost:8080/webservices/content-service"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/webservices/content-service</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="add" bindingOperationName="add" type="Request-Response" outputName="addResponse" inputName="add" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/content-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://migus.org/webservices/content-service" xmlns:con1="http://migus.org/schemas/content">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:add>
+         <con1:newContent>
+            <con1:author>Adam</con1:author>
+            <con1:title>Some content</con1:title>
+            <con1:text>Some content.</con1:text>
+         </con1:newContent>
+      </con:add>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://migus.org/webservices/content-service/content-service/add"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getByAuthor" bindingOperationName="getByAuthor" type="Request-Response" outputName="getByAuthorResponse" inputName="getByAuthor" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/content-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://migus.org/webservices/content-service" xmlns:con1="http://migus.org/schemas/content">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:getByAuthor>
+         <con1:author>Adam</con1:author>
+      </con:getByAuthor>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://migus.org/webservices/content-service/content-service/getByAuthor"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getById" bindingOperationName="getById" type="Request-Response" outputName="getByIdResponse" inputName="getById" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/content-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://migus.org/webservices/content-service" xmlns:con1="http://migus.org/schemas/content">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:getById>
+         <con1:id>f6ec59ad-9c68-4824-9bc3-cc01443dab93</con1:id>
+      </con:getById>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://migus.org/webservices/content-service/content-service/getById"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="update" bindingOperationName="update" type="Request-Response" outputName="updateResponse" inputName="update" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/content-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://migus.org/webservices/content-service" xmlns:con1="http://migus.org/schemas/content">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:update>
+         <con1:id>?</con1:id>
+         <con1:title>?</con1:title>
+         <con1:text>?</con1:text>
+      </con:update>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://migus.org/webservices/content-service/content-service/update"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="content-serviceSoapBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="add TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="add"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>content-serviceSoapBinding</con:interface><con:operation>add</con:operation><con:request name="add"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/content-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://migus.org/webservices/content-service" xmlns:con1="http://migus.org/schemas/content">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:add>
+         <con1:newContent>
+            <con1:author>?</con1:author>
+            <con1:title>?</con1:title>
+            <con1:text>?</con1:text>
+         </con1:newContent>
+      </con:add>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://migus.org/webservices/content-service/content-service/add" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:loadTest name="LoadTest 1"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting></con:settings><con:threadCount>5</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type><con:config><testDelay>100</testDelay><randomFactor>0.5</randomFactor></con:config></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getByAuthor TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="getByAuthor"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>content-serviceSoapBinding</con:interface><con:operation>getByAuthor</con:operation><con:request name="getByAuthor"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/content-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://migus.org/webservices/content-service" xmlns:con1="http://migus.org/schemas/content">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:getByAuthor>
+         <con1:author>?</con1:author>
+      </con:getByAuthor>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://migus.org/webservices/content-service/content-service/getByAuthor" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:loadTest name="LoadTest 1"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting></con:settings><con:threadCount>5</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="composite TestCase" searchProperties="true" id="17c28c90-90a8-4715-885e-b3f8c11c7e34"><con:settings/><con:testStep type="request" name="add"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>content-serviceSoapBinding</con:interface><con:operation>add</con:operation><con:request name="add"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/content-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://migus.org/webservices/content-service" xmlns:con1="http://migus.org/schemas/content">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:add>
+         <con1:newContent>
+            <con1:author>?</con1:author>
+            <con1:title>?</con1:title>
+            <con1:text>?</con1:text>
+         </con1:newContent>
+      </con:add>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://migus.org/webservices/content-service/content-service/add" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>id</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>add</con:sourceStep><con:sourcePath>declare namespace ns1='http://migus.org/webservices/content-service';
+declare namespace ns2='http://migus.org/schemas/content';
+//ns1:addResponse/ns2:id</con:sourcePath><con:targetType>Request</con:targetType><con:targetStep>getById</con:targetStep><con:targetPath>declare namespace ns1='http://migus.org/webservices/content-service';
+declare namespace ns2='http://migus.org/schemas/content';
+//ns1:getById/ns2:id</con:targetPath></con:transfers></con:config></con:testStep><con:testStep type="request" name="getById"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>content-serviceSoapBinding</con:interface><con:operation>getById</con:operation><con:request name="getById"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/content-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://migus.org/webservices/content-service" xmlns:con1="http://migus.org/schemas/content">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:getById>
+         <con1:id>f6df7439-9083-4e49-896b-57db0467966b</con1:id>
+      </con:getById>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://migus.org/webservices/content-service/content-service/getById" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer 2"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>id</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>getById</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://migus.org/webservices/content-service';
+declare namespace ns2='http://migus.org/schemas/content';
+declare namespace ns3='http://migus.org/webservices/content-service/fault';
+//ns1:getByIdResponse/ns2:content/@id</con:sourcePath><con:targetType>Request</con:targetType><con:targetStep>update</con:targetStep><con:targetPath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://migus.org/webservices/content-service';
+declare namespace ns2='http://migus.org/schemas/content';
+declare namespace ns3='http://migus.org/webservices/content-service/fault';
+//ns1:update/ns2:id</con:targetPath></con:transfers></con:config></con:testStep><con:testStep type="request" name="update"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>content-serviceSoapBinding</con:interface><con:operation>update</con:operation><con:request name="update"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/content-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://migus.org/webservices/content-service" xmlns:con1="http://migus.org/schemas/content">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:update>
+         <con1:id>f6df7439-9083-4e49-896b-57db0467966b</con1:id>
+         <con1:title>?</con1:title>
+         <con1:text>?</con1:text>
+      </con:update>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://migus.org/webservices/content-service/content-service/update" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:loadTest name="LoadTest 1"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting></con:settings><con:threadCount>25</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type><con:config><testDelay>100</testDelay><randomFactor>0.5</randomFactor></con:config></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/></con:soapui-project>
