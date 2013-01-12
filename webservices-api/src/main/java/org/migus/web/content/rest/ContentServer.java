@@ -7,14 +7,13 @@ import javax.ws.rs.PathParam;
 
 import org.migus.web.content.types.Content;
 import org.migus.web.content.types.Contents;
-import org.migus.web.content.types.NewContent;
 
 @Path("/")
 public interface ContentServer {
 
 	@PUT
 	@Path("/{id}")
-	public Content add(@PathParam("id") String id, NewContent newContent);
+	public Content add(@PathParam("id") String id, Content newContent);
 	
 	@GET
 	@Path("/{id}")

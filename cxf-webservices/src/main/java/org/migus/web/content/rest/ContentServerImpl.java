@@ -12,7 +12,6 @@ import org.migus.web.data.ContentDao.ContentData;
 import org.migus.web.content.ContentBuilder;
 import org.migus.web.content.types.Content;
 import org.migus.web.content.types.Contents;
-import org.migus.web.content.types.NewContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +47,7 @@ public class ContentServerImpl implements ContentServer {
 		this(contentDao, LoggerFactory.getLogger(ContentServerImpl.class));
 	}
 
-	public Content add(String newId, NewContent newContent) {
+	public Content add(String newId, Content newContent) {
 		String message="adding content with newId = "+newId+"; newContent ="+
 				newContent;
 		ContentData contentData=null;

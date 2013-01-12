@@ -14,7 +14,6 @@ import org.junit.Test;
 import org.migus.web.content.ContentTestBase;
 import org.migus.web.content.rest.ContentServer;
 import org.migus.web.content.types.Content;
-import org.migus.web.content.types.NewContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -24,7 +23,7 @@ public abstract class ContentServerTestBase extends ContentTestBase {
 
 	@Test
 	public void testAdd() {
-		NewContent newContent=new NewContent();
+		Content newContent=new Content();
 		UUID id=UUID.randomUUID();
 
 		newContent.setAuthor(AUTHOR);
