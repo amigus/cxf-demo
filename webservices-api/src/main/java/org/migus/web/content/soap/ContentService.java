@@ -10,6 +10,7 @@ import javax.xml.ws.ResponseWrapper;
 
 import org.migus.web.content.types.Content;
 import org.migus.web.content.types.Contents;
+import org.migus.web.content.types.Ids;
 import org.migus.web.content.types.NewContent;
 
 @WebService(targetNamespace = "http://migus.org/webservices/content-service",
@@ -35,7 +36,13 @@ public interface ContentService {
 	@WebMethod
 	@WebResult(name = "contents")
 	public Contents getByAuthor(@WebParam(name = "author") String author);
-	
+
+	@RequestWrapper(className="org.migus.web.content.soap.GetIds")
+	@ResponseWrapper(className="org.migus.web.content.soap.GetIdsResponse")
+	@WebMethod
+	@WebResult(name = "ids")
+	public Ids getIds();
+
 	@RequestWrapper(className="org.migus.web.content.soap.Update")
 	@ResponseWrapper(className="org.migus.web.content.soap.UpdateResponse")
 	@WebMethod

@@ -31,6 +31,12 @@
 	<wsdl:message name="getByIdResponse">
 		<wsdl:part element="tns:getByIdResponse" name="body" />
 	</wsdl:message>
+	<wsdl:message name="getIdsRequest">
+		<wsdl:part element="tns:getIds" name="body" />
+	</wsdl:message>
+	<wsdl:message name="getIdsResponse">
+		<wsdl:part element="tns:getIdsResponse" name="body" />
+	</wsdl:message>
 	<wsdl:message name="invalidFault">
 		<wsdl:part element="fault:invalid" name="body" />
 	</wsdl:message>
@@ -51,6 +57,10 @@
 			<wsdl:output message="tns:getByIdResponse" />
 			<wsdl:fault name="invalidFault" message="tns:invalidFault" />
 			<wsdl:fault name="notFoundFault" message="tns:notFoundFault" />
+		</wsdl:operation>
+		<wsdl:operation name="getIds">
+			<wsdl:input message="tns:getIdsRequest" />
+			<wsdl:output message="tns:getIdsResponse" />
 		</wsdl:operation>
 	</wsdl:portType>
 	<wsdl:binding name="content-serviceSOAP" type="tns:content-service">
@@ -88,6 +98,15 @@
 			<wsdl:fault name="notFoundFault">
 				<soap:fault name="notFoundFault" use="literal" />
 			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getIds">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:binding>
 	<wsdl:service name="content-service">

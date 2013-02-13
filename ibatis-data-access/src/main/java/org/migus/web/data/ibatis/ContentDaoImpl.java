@@ -87,6 +87,15 @@ public class ContentDaoImpl extends SqlMapClientDaoSupport implements
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<UUID> getIds() {
+		try {
+			return getSqlMapClient().queryForList("getIds");
+		} catch (SQLException e) {
+			throw new DataAccessException("getting ids", e);
+		}
+	}
+
 	public void updateContent(UUID id, String title, String text)
 			throws ContentNotFoundException {
 		if (id == null) {

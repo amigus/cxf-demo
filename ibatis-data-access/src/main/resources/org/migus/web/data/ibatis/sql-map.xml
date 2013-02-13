@@ -18,6 +18,9 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 		select id, author, title, text, created 
 			from content where id = #value#
 	</select>
+	<select id="getIds" resultClass="java.util.UUID">
+		select id from content
+	</select>
 	<insert id="insertContent">
 		insert into content (id, author, title, text, created) 
 			values (#id#, #author#, #title#, #text#, #created#)

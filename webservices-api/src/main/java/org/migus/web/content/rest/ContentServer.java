@@ -7,6 +7,7 @@ import javax.ws.rs.PathParam;
 
 import org.migus.web.content.types.Content;
 import org.migus.web.content.types.Contents;
+import org.migus.web.content.types.Ids;
 
 @Path("/")
 public interface ContentServer {
@@ -20,9 +21,12 @@ public interface ContentServer {
 	public Content get(@PathParam("id") String id);
 
 	@GET
+	public Ids getIds();
+
+	@GET
 	@Path("/author/{author}")
 	public Contents getByAuthor(@PathParam("author") String author);
-	
+
 	@PUT
 	@Path("/{id}/text")
 	public String updateText(@PathParam("id") String id, String text);

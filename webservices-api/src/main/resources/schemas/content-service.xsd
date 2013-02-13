@@ -48,6 +48,16 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
+	<xsd:element name="getIds">
+		<xsd:complexType/>
+	</xsd:element>
+	<xsd:element name="getIdsResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="content:ids" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
 	<xsd:element name="update">
 		<xsd:complexType>
 			<xsd:sequence>

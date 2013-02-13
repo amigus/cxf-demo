@@ -13,6 +13,7 @@ import org.migus.web.content.soap.fromwsdl.InvalidFault;
 import org.migus.web.content.soap.fromwsdl.NotFoundFault;
 import org.migus.web.content.types.Content;
 import org.migus.web.content.types.Contents;
+import org.migus.web.content.types.Ids;
 import org.migus.web.content.types.NewContent;
 import org.migus.web.data.ContentDao;
 import org.migus.web.data.ContentDao.ContentData;
@@ -118,5 +119,16 @@ public class UnwrappedContentServiceImpl implements ContentService {
 			
 			throw invalidFault;
 		}
+	}
+
+	public GetIdsResponse getIds(GetIds body) {
+		GetIdsResponse response=new GetIdsResponse();
+		Ids ids = new Ids();
+
+		for (UUID uuid : contentDao.getIds()) {
+			ids.getIds().add(uuid.toString());
+		}
+		response.setIds(ids);
+		return response;
 	}
 }

@@ -28,6 +28,11 @@
 	<xsd:simpleType name="textType">
 		<xsd:restriction base="xsd:string" />
 	</xsd:simpleType>
+	<xsd:complexType name="idsType">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
 	<xsd:element name="content" type="tns:contentType" />
 	<xsd:element name="contents">
 		<xsd:complexType>
@@ -38,6 +43,7 @@
 	</xsd:element>
 	<xsd:element name="author" type="tns:authorType" />
 	<xsd:element name="id" type="xsd:string" />
+	<xsd:element name="ids" type="tns:idsType" />
 	<xsd:element name="newContent" type="tns:newContentType" />
 	<xsd:element name="text" type="tns:textType" />
 	<xsd:element name="title" type="tns:titleType" />

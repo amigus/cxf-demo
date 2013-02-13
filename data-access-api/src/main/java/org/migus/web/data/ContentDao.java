@@ -68,14 +68,17 @@ public interface ContentDao {
 
 	public void insertContent(UUID id, String author, String title, String text)
 			throws ContentExistsException;
-		
+
 	public List<ContentData> getContentsByAuthor(String author);
-	
+
 	public ContentData getContent(UUID id);
 	
+	public List<UUID> getIds();
+
 	public void updateContent(UUID id, String title, String text)
 			throws ContentNotFoundException;
 
 	public void updateContent(ContentData content)
 		throws ContentNotFoundException;
+
 }

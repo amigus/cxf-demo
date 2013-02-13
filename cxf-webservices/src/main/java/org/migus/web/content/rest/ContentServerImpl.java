@@ -12,6 +12,7 @@ import org.migus.web.data.ContentDao.ContentData;
 import org.migus.web.content.ContentBuilder;
 import org.migus.web.content.types.Content;
 import org.migus.web.content.types.Contents;
+import org.migus.web.content.types.Ids;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,6 +111,14 @@ public class ContentServerImpl implements ContentServer {
 		
 		logger.debug("content = "+content);
 		return content;
+	}
+
+	public Ids getIds() {
+		Ids ids = new Ids();
+		for (UUID uuid : contentDao.getIds()) {
+			ids.getIds().add(uuid.toString());
+		}
+		return ids;
 	}
 
 	public String updateText(String id, String text) {

@@ -12,6 +12,7 @@ import org.migus.web.data.ContentDao.ContentData;
 import org.migus.web.content.ContentBuilder;
 import org.migus.web.content.types.Content;
 import org.migus.web.content.types.Contents;
+import org.migus.web.content.types.Ids;
 import org.migus.web.content.types.NewContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -104,6 +105,14 @@ public class ContentServiceImpl implements ContentService {
 
 	public Content getById(String id) throws NotFoundException, InvalidException {
 		return doGetById(id);
+	}
+
+	public Ids getIds() {
+		Ids ids = new Ids();
+		for (UUID uuid : contentDao.getIds()) {
+			ids.getIds().add(uuid.toString());
+		}
+		return ids;
 	}
 
 	public Content update(String id, String title, String text) 
