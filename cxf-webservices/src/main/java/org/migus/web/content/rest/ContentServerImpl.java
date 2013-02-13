@@ -48,11 +48,10 @@ public class ContentServerImpl implements ContentServer {
 		this(contentDao, LoggerFactory.getLogger(ContentServerImpl.class));
 	}
 
-	public Content add(String newId, Content newContent) {
-		String message="adding content with newId = "+newId+"; newContent ="+
+	private Content add(UUID id, Content newContent) {
+		String message="adding content with newId = "+id+"; newContent ="+
 				newContent;
 		ContentData contentData=null;
-		UUID id=UUID.fromString(newId);
 
 		logger.debug(message);
 		try {
@@ -82,6 +81,14 @@ public class ContentServerImpl implements ContentServer {
 		}
 		logger.debug("content = "+content);
 		return content;
+	}
+
+	public Content add(Content newContent) {
+		return this.add(UUID.randomUUID().toString(), newContent);
+	}
+
+	public Content add(String newId, Content newContent) {
+		return this.add(UUID.fromString(newId), newContent);
 	}
 
 	public Contents getByAuthor(String author) {

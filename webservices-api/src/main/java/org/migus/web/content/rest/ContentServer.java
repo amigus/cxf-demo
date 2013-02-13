@@ -1,6 +1,7 @@
 package org.migus.web.content.rest;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -11,6 +12,10 @@ import org.migus.web.content.types.Ids;
 
 @Path("/")
 public interface ContentServer {
+
+	@GET
+	@Path("/author/{author}")
+	public Contents getByAuthor(@PathParam("author") String author);
 
 	@PUT
 	@Path("/{id}")
@@ -23,9 +28,8 @@ public interface ContentServer {
 	@GET
 	public Ids getIds();
 
-	@GET
-	@Path("/author/{author}")
-	public Contents getByAuthor(@PathParam("author") String author);
+	@POST
+	public Content add(Content newContent);
 
 	@PUT
 	@Path("/{id}/text")
