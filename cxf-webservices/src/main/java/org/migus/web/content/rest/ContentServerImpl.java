@@ -1,5 +1,10 @@
 package org.migus.web.content.rest;
 
+import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static javax.ws.rs.core.Response.Status.CONFLICT;
+import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
+import static javax.ws.rs.core.Response.Status.NOT_FOUND;
+
 import java.util.UUID;
 
 import javax.ws.rs.WebApplicationException;
@@ -32,7 +37,7 @@ public class ContentServerImpl implements ContentServer {
 			content=ContentBuilder.fromContentData(contentData).build();
 		} catch (DatatypeConfigurationException e) {
 			logger.error(message, e);
-			throw new WebApplicationException(500);
+			throw new WebApplicationException(INTERNAL_SERVER_ERROR);
 		}
 		logger.debug("content = "+content);
 		return content;
@@ -62,12 +67,12 @@ public class ContentServerImpl implements ContentServer {
 			contentData=contentDao.getContent(id);
 			if (contentData == null) {
 				logger.error("contentData is null for existing id "+id);
-				throw new WebApplicationException(500);
+				throw new WebApplicationException(INTERNAL_SERVER_ERROR);
 			}
 			if(!contentData.getText().equals(newContent.getText())
 					|| !contentData.getAuthor().equals(newContent.getAuthor())
 					|| !contentData.getTitle().equals(newContent.getTitle())) {
-				throw new WebApplicationException(409);
+				throw new WebApplicationException(CONFLICT);
 			}
 		}
 		if (contentData == null) {
@@ -88,7 +93,11 @@ public class ContentServerImpl implements ContentServer {
 	}
 
 	public Content add(String newId, Content newContent) {
-		return this.add(UUID.fromString(newId), newContent);
+		try {
+			return this.add(UUID.fromString(newId), newContent);
+		} catch (IllegalArgumentException e) {
+			throw new WebApplicationException(BAD_REQUEST);
+		}
 	}
 
 	public Contents getByAuthor(String author) {
@@ -105,13 +114,21 @@ public class ContentServerImpl implements ContentServer {
 	}
 
 	public Content get(String id) {
-		ContentData contentData=contentDao.getContent(UUID.fromString(id));
+		ContentData contentData;
+		UUID uuid;
 		String message="getting content for id "+id;
 
 		logger.debug(message);
+		try {
+			uuid=UUID.fromString(id);
+		} catch (IllegalArgumentException e) {
+			throw new WebApplicationException(BAD_REQUEST);
+		}
+		assert(uuid != null);
+		contentData=contentDao.getContent(uuid);
 		if (contentData == null) {
 			logger.debug("contentData was null when "+message);
-			throw new WebApplicationException(404);
+			throw new WebApplicationException(NOT_FOUND);
 		}
 		
 		Content content=convertContentData(contentData);
@@ -138,7 +155,7 @@ public class ContentServerImpl implements ContentServer {
 			contentDao.updateContent(content);
 		} catch (ContentNotFoundException e) {
 			logger.debug(message, e);
-			throw new WebApplicationException(404);
+			throw new WebApplicationException(NOT_FOUND);
 		}
 		return text;
 	}
@@ -153,7 +170,7 @@ public class ContentServerImpl implements ContentServer {
 			contentDao.updateContent(content);
 		} catch (ContentNotFoundException e) {
 			logger.debug(message, e);
-			throw new WebApplicationException(404);
+			throw new WebApplicationException(NOT_FOUND);
 		}
 		return title;
 	}
