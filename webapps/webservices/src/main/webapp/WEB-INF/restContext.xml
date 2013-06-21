@@ -27,6 +27,8 @@
 				<entry key="http://migus.org/schemas/content" value=""/>
 			</util:map>
 		</property>
+		<property name="dropRootElement" value="true" />
+		<property name="supportUnwrapped" value="true" />
 		<property name="schemaHandler" ref="schemaHandler"/>
 	</bean>
 	<jaxrs:server id="contentServer" address="/content">
