@@ -69,11 +69,7 @@ public class ContentServerImpl implements ContentServer {
 				logger.error("contentData is null for existing id "+id);
 				throw new WebApplicationException(INTERNAL_SERVER_ERROR);
 			}
-			if(!contentData.getText().equals(newContent.getText())
-					|| !contentData.getAuthor().equals(newContent.getAuthor())
-					|| !contentData.getTitle().equals(newContent.getTitle())) {
-				throw new WebApplicationException(CONFLICT);
-			}
+			throw new WebApplicationException(CONFLICT);
 		}
 		if (contentData == null) {
 			contentData=contentDao.getContent(id);
