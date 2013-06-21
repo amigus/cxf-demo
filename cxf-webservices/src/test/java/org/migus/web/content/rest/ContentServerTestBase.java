@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assume.assumeNotNull;
 import static org.junit.Assert.fail;
+import static javax.ws.rs.core.Response.Status.CONFLICT;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.ws.rs.WebApplicationException;
 
@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.migus.web.content.ContentTestBase;
 import org.migus.web.content.rest.ContentServer;
 import org.migus.web.content.types.Content;
+import org.migus.web.content.types.NewContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -23,31 +24,34 @@ public abstract class ContentServerTestBase extends ContentTestBase {
 
 	@Test
 	public void testAdd() {
-		Content newContent=new Content();
-		UUID id=UUID.randomUUID();
+		NewContent newContent=new NewContent();
 
 		newContent.setAuthor(AUTHOR);
 		newContent.setText(CONTENT);
 		newContent.setTitle(TITLE);
 
-		Content content;
+		Content content=null;
 		try {
-			content=contentServer.add(id.toString(), newContent);
-			assertEquals(content.getId(), id.toString());
-			assertEquals(content.getText(), newContent.getText());
+			content=contentServer.add(newContent);
+			if (content != null) {
+				assertEquals(content.getText(), newContent.getText());
+			}
 		}
 		catch(WebApplicationException e) {
 			fail("did not expect to get "+e);
 		}
 
+		assertNotNull(content);
+
+		String id=content.getId();
+
 		try {
-			newContent.setTitle(TITLE+" updated");
-			content=contentServer.add(id.toString(), newContent);
-			fail("expected to get WebApplicationException with status 409");
+			content=contentServer.add(id, newContent);
+			fail("expected WebApplicationException with status "+CONFLICT);
 		}
 		catch(WebApplicationException e) {
 			assumeNotNull(e);
-			assertEquals(409, e.getResponse().getStatus());
+			assertEquals(CONFLICT.getStatusCode(), e.getResponse().getStatus());
 		}
 	}
 

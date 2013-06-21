@@ -18,6 +18,7 @@ import org.migus.web.content.ContentBuilder;
 import org.migus.web.content.types.Content;
 import org.migus.web.content.types.Contents;
 import org.migus.web.content.types.Ids;
+import org.migus.web.content.types.NewContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,7 @@ public class ContentServerImpl implements ContentServer {
 		this(contentDao, LoggerFactory.getLogger(ContentServerImpl.class));
 	}
 
-	private Content add(UUID id, Content newContent) {
+	private Content add(UUID id, NewContent newContent) {
 		String message="adding content with newId = "+id+"; newContent ="+
 				newContent;
 		ContentData contentData=null;
@@ -84,11 +85,11 @@ public class ContentServerImpl implements ContentServer {
 		return content;
 	}
 
-	public Content add(Content newContent) {
+	public Content add(NewContent newContent) {
 		return this.add(UUID.randomUUID().toString(), newContent);
 	}
 
-	public Content add(String newId, Content newContent) {
+	public Content add(String newId, NewContent newContent) {
 		try {
 			return this.add(UUID.fromString(newId), newContent);
 		} catch (IllegalArgumentException e) {

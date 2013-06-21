@@ -5,12 +5,15 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 
 import org.migus.web.content.types.Content;
 import org.migus.web.content.types.Contents;
 import org.migus.web.content.types.Ids;
+import org.migus.web.content.types.NewContent;
 
 @Path("/")
+@Produces({"application/json", "application/xml"})
 public interface ContentServer {
 
 	@GET
@@ -19,7 +22,7 @@ public interface ContentServer {
 
 	@PUT
 	@Path("/{id}")
-	public Content add(@PathParam("id") String id, Content newContent);
+	public Content add(@PathParam("id") String id, NewContent newContent);
 	
 	@GET
 	@Path("/{id}")
@@ -29,7 +32,7 @@ public interface ContentServer {
 	public Ids getIds();
 
 	@POST
-	public Content add(Content newContent);
+	public Content add(NewContent newContent);
 
 	@PUT
 	@Path("/{id}/text")
