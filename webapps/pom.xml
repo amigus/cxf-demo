@@ -50,6 +50,7 @@
 	</build>
 	<modules>
 		<module>webservices</module>
+		<module>website</module>
 	</modules>
 	<profiles>
 		<profile>

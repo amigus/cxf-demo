@@ -1,0 +1,50 @@
+@CHARSET "US-ASCII";
+
+#author {
+	text-align:right;
+	vertical-align:top;
+}
+
+#edit-content-title-input {
+	width:100%;
+}
+
+#edit-content-text-input {
+	width:100%;
+	height:100%;
+}
+
+#edit-content-id {
+	font-size:50%;
+	text-align:right;
+	width:100%;
+}
+
+#empty-content {
+	border:dashed;
+	border-width:thin;
+	height:4em;
+	text-align:center;
+	vertical-align:center;
+}
+
+div.content {
+	padding:2em 0em 2em 0em;
+}
+
+div.content-author {
+	text-align:right;
+}
+
+div.content-title {
+	font-size:125%;
+}
+
+div.content-id, div.content-created {
+	text-align:right;
+	font-size:75%;
+}
+
+div.content-created {
+	font-style:italic;
+}
