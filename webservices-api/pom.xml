@@ -11,9 +11,6 @@
 	<name>Web Services API</name>
 	<version>1.0-SNAPSHOT</version>
 	<description>The web services API for Migus Dot Org</description>
-	<properties>
-		<cxf.version>2.6.0</cxf.version>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>javax.xml.bind</groupId>

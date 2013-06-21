@@ -12,9 +12,6 @@
 	<name>Services Web Application</name>
 	<version>1.0-SNAPSHOT</version>
 	<description>Web services application</description>
-	<properties>
-		<cxf.version>2.6.0</cxf.version>
-	</properties>
 	<build>
 		<pluginManagement>
 			<plugins>
