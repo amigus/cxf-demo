@@ -62,7 +62,7 @@
 			<div class="content-title">{{ item.title }}</div>
 			<div class="content-text">{{ item.text }}</div>
 			<div class="content-author">{{ item.author }}</div>
-			<div class="content-created">{{ item['@created'] | date:'mediumDate' }}</div>
+			<div class="content-created">{{ item['@created'] | date:'medium' }}</div>
 			<div class="content-id">
 				<a href="" data-ng-click="edit(item)">{{ item['@id'] }}</a>
 			</div>

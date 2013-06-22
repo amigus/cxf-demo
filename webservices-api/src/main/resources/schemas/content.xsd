@@ -10,7 +10,7 @@
 			<xsd:element name="text" type="tns:textType" />
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string"/>
-		<xsd:attribute name="created" type="xsd:date"/>
+		<xsd:attribute name="created" type="xsd:dateTime"/>
 	</xsd:complexType>
 	<xsd:complexType name="newContentType">
 		<xsd:sequence>
