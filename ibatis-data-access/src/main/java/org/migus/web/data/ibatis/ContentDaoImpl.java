@@ -49,6 +49,18 @@ public class ContentDaoImpl extends SqlMapClientDaoSupport implements
 		return id;
 	}
 
+	public void deleteContent(UUID id) throws ContentNotFoundException {
+		String message = "deleting content with id " + id;
+
+		try {
+			logger.debug(message);
+			getSqlMapClient().delete("deleteContentById", id);
+		} catch (SQLException e) {
+			logger.error(message, e);
+			throw new DataAccessException(message, e);
+		}
+	}
+
 	public void insertContent(UUID id, String author, String title, String text)
 			throws ContentExistsException {
 		if (id == null) {

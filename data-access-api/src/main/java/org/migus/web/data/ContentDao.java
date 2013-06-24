@@ -66,6 +66,8 @@ public interface ContentDao {
 	
 	public UUID addContent(String author, String title, String text);
 
+	public void deleteContent(UUID id) throws ContentNotFoundException;
+
 	public void insertContent(UUID id, String author, String title, String text)
 			throws ContentExistsException;
 

@@ -29,4 +29,7 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 		update content set title = #title#, text = #text#
 			where id = #id#
 	</update>
+	<delete id="deleteContentById">
+		delete from content where id = #id#
+	</delete>
 </sqlMap>

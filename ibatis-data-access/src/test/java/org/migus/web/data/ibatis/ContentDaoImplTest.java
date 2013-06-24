@@ -48,7 +48,17 @@ public class ContentDaoImplTest {
 		assertNotNull(content);
 		assertEquals(content.get(0).getAuthor(), AUTHOR);
 	}
-	
+
+	@Test
+	public void testDeleteContent() throws ContentExistsException,
+			ContentNotFoundException {
+		UUID id=UUID.randomUUID();
+
+		contentDao.insertContent(id, AUTHOR, TITLE, CONTENT);
+		contentDao.deleteContent(id);
+		assertNull(contentDao.getContent(id));
+	}
+
 	@Test
 	public void testGetContent() throws ContentExistsException {
 		UUID id=UUID.randomUUID();
