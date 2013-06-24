@@ -1,5 +1,6 @@
 package org.migus.web.content.rest;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -23,7 +24,11 @@ public interface ContentServer {
 	@PUT
 	@Path("/{id}")
 	public Content add(@PathParam("id") String id, NewContent newContent);
-	
+
+	@DELETE
+	@Path("/{id}")
+	public void delete(@PathParam("id") String id);
+
 	@GET
 	@Path("/{id}")
 	public Content get(@PathParam("id") String id);

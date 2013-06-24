@@ -97,6 +97,19 @@ public class ContentServerImpl implements ContentServer {
 		}
 	}
 
+	public void delete(String id) {
+		String message="delete content with id "+id;
+
+		logger.debug(message);
+		try {
+			contentDao.deleteContent(UUID.fromString(id));
+		} catch (ContentNotFoundException e) {
+			logger.debug("content with id {} not found", id, e);
+			assert(id.equals(e.getId()));
+			throw new WebApplicationException(NOT_FOUND);
+		}
+	}
+
 	public Contents getByAuthor(String author) {
 		Contents contents=new Contents();
 		String message="getting contents for author "+author;
