@@ -2,7 +2,7 @@ angular.module('content-ui', ['ngResource']);
 
 
 function ContentController ($scope, $http, $resource) {
-	var content = $resource('/webservices/content/:id');
+	var content = $resource('http://localhost\\:8081/webservices/content/:id');
 
 	$scope.content = [];
 
