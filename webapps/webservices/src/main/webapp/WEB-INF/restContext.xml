@@ -27,7 +27,13 @@
 				<entry key="http://migus.org/schemas/content" value=""/>
 			</util:map>
 		</property>
+		<property name="arrayKeys">
+		    <util:list>
+		        <value>id</value>
+		    </util:list>
+		</property>
 		<property name="dropRootElement" value="true" />
+		<property name="serializeAsArray" value="true" />
 		<property name="supportUnwrapped" value="true" />
 		<property name="schemaHandler" ref="schemaHandler"/>
 	</bean>
