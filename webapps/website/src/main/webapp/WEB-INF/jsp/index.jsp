@@ -33,15 +33,15 @@
 			<div id="content-editor" title="Content">
 					<div id="edit-content-title">
 						<div id="edit-content-title-label">Title:</div>
-						<input data-ng-model="title" id="edit-content-title-input"
+						<input data-ng-model="current.title" id="edit-content-title-input"
 								name="title" required type="text"/>
 					</div>
 					<div id="edit-content-text">
 						<div id="edit-content-text-label">Text:</div>
-						<textarea data-ng-model="text" id="edit-content-text-input"></textarea>
+						<textarea data-ng-model="current.text" id="edit-content-text-input"></textarea>
 					</div>
 
-					<div id="edit-content-id">{{ id }}</div>
+					<div id="edit-content-id">{{ current['@id'] }}</div>
 					<div id="edit-content-buttons">
 						<button id="edit-content-add-button" data-ng-click="save(contentForm)"
 								data-ng-disabled="contentForm.$invalid || saving">Save</button>

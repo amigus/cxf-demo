@@ -7,55 +7,40 @@ function ContentController ($scope, $http, $resource) {
 	$scope.content = [];
 
 	content.get(function(response) {
-		var ids = response.id;
-
-		if (ids != null) {
-			for (var i = 0; i < ids.length; i++) {
-				content.get({id: ids[i]}, function(item) {
-					$scope.content.push(item);
-				});
+		if (response.id != null) {
+			for (var i = 0; i < response.id.length; i++) {
+				$scope.content.push(content.get({id: response.id[i]}));
 			}
 		}
 	});
 
 	$scope.add = function(authorForm) {
-		$scope.id = $scope.title = $scope.text = null;
-
 		if (authorForm.$valid) {
+			var current = new content();
+
+			current.author = $scope.author;
+			$scope.current = current;
 			$( "#content-editor" ).dialog( "open" );
 		}
 	};
 
 	$scope.edit = function(item) {
-		$scope.author = item.author;
-		$scope.title = item.title;
-		$scope.text = item.text;
-		$scope.id = item['@id'];
+		$scope.current = item;
 		$( "#content-editor" ).dialog( "open" );
 	};
 
 	$scope.save = function(contentForm) {
-		var newcontent = new content();
-
 		if (contentForm.$valid) {
-			newcontent.author = $scope.author;
-			newcontent.title = $scope.title;
-			newcontent.text = $scope.text;
+			var current = $scope.current;
+
 			$scope.saving = true;
-
-			newcontent.$save(function() {
-				if ($scope.id != null) {
-					content.remove({ id: $scope.id });
-					for (var i = 0; i < $scope.content.length; i++) {
-						if ($scope.content[i]['@id'] == $scope.id) {
-							$scope.content.splice(i, 1, newcontent);
-						}
-					}
-				} else {
-					$scope.content.push(newcontent);
-				}
-
-				$scope.id = newcontent['@id'];
+			if (current['@id'] == null) {
+				$scope.content.unshift(current);
+			} else {
+				delete current['@id'];
+				delete current['@created'];
+			}
+			current.$save({}, function() {
 				$scope.saving = null;
 			}, function() {
 				$scope.saving = null;
