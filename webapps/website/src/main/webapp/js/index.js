@@ -1,8 +1,10 @@
-angular.module('content-ui', ['ngResource']);
+angular.module('content-ui', ['ngResource']).
+	factory('content', ['$resource', function($resource) {
+		return $resource('http://localhost\\:8081/webservices/content/:id');
+	}
+]);
 
-
-function ContentController ($scope, $http, $resource, $window) {
-	var content = $resource('http://localhost\\:8081/webservices/content/:id');
+function ContentController ($scope, $http, $window, content) {
 	$scope.content = [];
 
 	$window.signinCallback = function(authResult) {
