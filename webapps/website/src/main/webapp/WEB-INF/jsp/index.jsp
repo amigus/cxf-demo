@@ -17,13 +17,20 @@
 	<body data-ng-controller="ContentController">
 		<form id="author-form" name="authorForm">
 			<div id="author">
-				<label id="author-label">Author</label>
-				<input data-ng-model="author" id="author-input" name="author"
-						type="text" placeholder="who are you?" required />
-				<div id="author-form-errors" data-ng-show="authorForm.$invalid">
-					<span class="author-form-errors"
-							data-ng-show="authorForm.author.$error.required">
-								(required to add content)
+				<input data-ng-model="author.displayName" id="author-input"
+					name="author" type="text" placeholder="Enter your name here..."
+					data-ng-disabled="author.kind === 'plus#person'" required />
+				<div id="author-form-errors"
+						data-ng-show="authorForm.author.$error.required">
+					<label class="author-required-error"> or use </label>
+					<span id="signinButton"><span class="g-signin"
+						data-callback="signinCallback"
+						data-clientid="997230998169.apps.googleusercontent.com"
+						data-cookiepolicy="single_host_origin"
+						data-height="short"
+						data-requestvisibleactions="http://schemas.google.com/AddActivity"
+						data-scope="https://www.googleapis.com/auth/plus.login"
+						data-theme="light"></span>
 					</span>
 				</div>
 			</div>
@@ -60,5 +67,15 @@
 				<a href="" data-ng-click="edit(item)">{{ item['@id'] }}</a>
 			</div>
 		</div>
+		<script type="text/javascript">
+			(function() {
+				var po = document.createElement('script');
+				po.type = 'text/javascript';
+				po.async = true;
+				po.src = 'https://apis.google.com/js/client:plusone.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(po, s);
+			})();
+		</script>
 	</body>
 </html>

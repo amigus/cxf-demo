@@ -2,6 +2,9 @@
 
 #author {
 	text-align:right;
+}
+
+label.author-required-error, #signinButton {
 	vertical-align:top;
 }
 
