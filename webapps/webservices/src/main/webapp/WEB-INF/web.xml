@@ -13,9 +13,10 @@
 		<param-value>
 			classpath:META-INF/cxf/cxf.xml
 			classpath:META-INF/cxf/cxf-servlet.xml
-			/WEB-INF/soapContext.xml
-			/WEB-INF/restContext.xml
+			/WEB-INF/applicationContext.xml
 			/WEB-INF/dataSourceContext.xml
+			/WEB-INF/restContext.xml
+			/WEB-INF/soapContext.xml
 		</param-value>
 	</context-param>
 	<context-param>

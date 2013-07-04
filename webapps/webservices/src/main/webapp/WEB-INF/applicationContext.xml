@@ -3,13 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-	<bean class="org.migus.web.data.ibatis.config.DaoConfiguration" />
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-			destroy-method="close">
-		<property name="driverClassName"
-				value="${datasource.dbcp.driverClassName}" />
-		<property name="url" value="${datasource.dbcp.url}" />
-		<property name="username" value="${datasource.dbcp.username}" />
-		<property name="password" value="${datasource.dbcp.password}" />
-	</bean>
+	<context:annotation-config />
+	<context:property-placeholder location="classpath:org/migus/web/content/webservices.properties" />
 </beans>

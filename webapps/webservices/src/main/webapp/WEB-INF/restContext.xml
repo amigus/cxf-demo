@@ -44,7 +44,7 @@
 		<jaxrs:providers>
 			<bean id="corsFilter" class="org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter">
 				<property name="allowCredentials" value="false" />
-				<property name="allowOrigins" value="http://localhost:8080" />
+				<property name="allowOrigins" value="${cors.allow-origins}" />
 			</bean>
 			<ref bean="jaxbProvider" />
 			<ref bean="jsonProvider" />
