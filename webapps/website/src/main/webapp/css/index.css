@@ -1,13 +1,5 @@
 @CHARSET "US-ASCII";
 
-#author {
-	text-align:right;
-}
-
-label.author-required-error, #signinButton {
-	vertical-align:top;
-}
-
 #edit-content-title-input {
 	width:100%;
 }
@@ -26,9 +18,16 @@ label.author-required-error, #signinButton {
 #empty-content {
 	border:dashed;
 	border-width:thin;
-	height:4em;
-	text-align:center;
-	vertical-align:center;
+	opacity:0.3;
+}
+
+#new-content-message {
+	padding:1em 1em 1em 1em;
+	vertical-align:middle;
+}
+
+#signin {
+	text-align:right;
 }
 
 div.content {

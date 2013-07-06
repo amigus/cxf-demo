@@ -14,27 +14,16 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular-resource.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
 	</head>
-	<body data-ng-controller="ContentController">
-		<form id="author-form" name="authorForm">
-			<div id="author">
-				<input data-ng-model="author.displayName" id="author-input"
-					name="author" type="text" placeholder="Enter your name here..."
-					data-ng-disabled="author.kind === 'plus#person'" required />
-				<div id="author-form-errors"
-						data-ng-show="authorForm.author.$error.required">
-					<label class="author-required-error"> or use </label>
-					<span id="signinButton"><span class="g-signin"
-						data-callback="signinCallback"
-						data-clientid="997230998169.apps.googleusercontent.com"
-						data-cookiepolicy="single_host_origin"
-						data-height="short"
-						data-requestvisibleactions="http://schemas.google.com/AddActivity"
-						data-scope="https://www.googleapis.com/auth/plus.login"
-						data-theme="light"></span>
-					</span>
-				</div>
-			</div>
-		</form>
+	<body data-ng-controller="ContentCtrl">
+		<div id="signin" data-ng-show="!author">
+			<span id="signinButton"><span class="g-signin"
+				data-callback="signinCallback"
+				data-clientid="997230998169.apps.googleusercontent.com"
+				data-cookiepolicy="single_host_origin"
+				data-requestvisibleactions="http://schemas.google.com/AddActivity"
+				data-scope="https://www.googleapis.com/auth/plus.login"></span>
+			</span>
+		</div>
 		<h1>Content UI</h1>
 		<form id="content-form" name="contentForm">
 			<div id="content-editor" title="Content">
@@ -47,15 +36,14 @@
 						<div id="edit-content-text-label">Text:</div>
 						<textarea data-ng-model="current.text" id="edit-content-text-input"></textarea>
 					</div>
-
 					<div id="edit-content-id">{{ current['@id'] }}</div>
 					<div id="edit-content-buttons">
-						<button id="edit-content-add-button" data-ng-click="save(contentForm)"
+						<button id="edit-content-add-button" data-ng-click="save(contentForm, current)"
 								data-ng-disabled="contentForm.$invalid || saving">Save</button>
 					</div>
 			</div>
-			<div id="empty-content" data-ng-click="add(authorForm)" data-ng-show="authorForm.$valid">
-				New content goes here...
+			<div id="empty-content" data-ng-click="add(author)" data-ng-show="author">
+				<p id="new-content-message">New content goes here...</p>
 			</div>
 		</form>
 		<div class="content" data-ng-repeat="item in content">

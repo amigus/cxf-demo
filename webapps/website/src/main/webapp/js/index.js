@@ -4,17 +4,17 @@ angular.module('content-ui', ['ngResource']).
 	}
 ]);
 
-function ContentController ($scope, $http, $window, content) {
+function ContentCtrl ($scope, $http, $window, content) {
 	$scope.content = [];
 
 	$window.signinCallback = function(authResult) {
 		if (authResult['access_token']) {
 			// Use JQuery.ajax instead of $http because the latter doesn't work.
 			$.ajax({
-			   url: 'https://www.googleapis.com/plus/v1/people/me',
-			   headers: { 'Authorization':
+				url: 'https://www.googleapis.com/plus/v1/people/me',
+				headers: { 'Authorization':
 					authResult['token_type'] + ' ' + authResult['access_token']
-			   }
+				}
 			}).done(function (response) {
 				$scope.author = response;
 				$scope.$apply();
@@ -41,11 +41,11 @@ function ContentController ($scope, $http, $window, content) {
 		}
 	});
 
-	$scope.add = function(authorForm) {
-		if (authorForm.$valid) {
+	$scope.add = function(author) {
+		if (author) {
 			var current = new content();
 
-			current.author = $scope.author.displayName;
+			current.author = author.displayName;
 			$scope.current = current;
 			$( "#content-editor" ).dialog( "open" );
 		}
@@ -56,14 +56,13 @@ function ContentController ($scope, $http, $window, content) {
 		$( "#content-editor" ).dialog( "open" );
 	};
 
-	$scope.save = function(contentForm) {
+	$scope.save = function(contentForm, current) {
 		if (contentForm.$valid) {
-			var current = $scope.current;
-
 			$scope.saving = true;
 			if (current['@id'] == null) {
 				$scope.content.unshift(current);
 			} else {
+				content.remove({id: current['@id']});
 				delete current['@id'];
 				delete current['@created'];
 			}
